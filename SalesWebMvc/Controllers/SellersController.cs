@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
 using SalesWebMvc.Services;
 using SalesWebMvc.Models.ViewModels;
+using SalesWebMvc.Data;
 
 namespace SalesWebMvc.Controllers
 {
@@ -46,7 +47,12 @@ namespace SalesWebMvc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Teste()
+        {
+            return View();
+        }
 
+        
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -69,6 +75,23 @@ namespace SalesWebMvc.Controllers
         {
             _sellerService.Remove(id);
             return RedirectToAction(nameof(Index));
+        }
+
+
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+
         }
 
     }
