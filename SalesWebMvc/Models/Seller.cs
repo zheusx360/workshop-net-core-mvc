@@ -8,16 +8,25 @@ namespace SalesWebMvc.Models
     public class Seller
     {
         public int Id { get; set; }
+
         [Display(Name = "Nome")]
+        [Required(ErrorMessage = "{0} deve ser digitado")]
+        [StringLength(100,MinimumLength = 3,ErrorMessage = "O nome deve conter entre 3 e 100 caractéres")]
         public string Name  { get; set; }
+
+        [Required(ErrorMessage = "{0} deve ser digitado")]
+        [EmailAddress(ErrorMessage = "Entre com um email válido")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Display(Name = "Data de Nascimento")]
+        [Required(ErrorMessage = "{0} deve ser digitado")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Birthdate { get; set; }
 
+        [Required(ErrorMessage = "{0} deve ser digitado")]
+        [Range(100.0,50000.0,ErrorMessage = "{0} deve ser entre {1} e {2}")]
         [Display(Name = "Salário Base")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
         public double BaseSalary { get; set; }

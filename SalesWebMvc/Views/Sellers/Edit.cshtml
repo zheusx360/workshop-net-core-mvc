@@ -13,22 +13,28 @@
 
 
         <form asp-action="Edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
             <input type="hidden" asp-for="seller.Id" />
             <div class="form-group">
                 <label asp-for="seller.Name" class="control-label"></label>
                 <input asp-for="seller.Name" class="form-control" />
+                <span asp-validation-for="seller.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="seller.Email" class="control-label"></label>
                 <input asp-for="seller.Email" class="form-control" />
+                <span asp-validation-for="seller.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="seller.Birthdate" class="control-label"></label>
                 <input asp-for="seller.Birthdate" class="form-control" />
+                <span asp-validation-for="seller.Birthdate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="seller.BaseSalary" class="control-label"></label>
                 <input asp-for="seller.BaseSalary" class="form-control" />
+                <span asp-validation-for="seller.BaseSalary" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -48,3 +54,9 @@
     </div>
 </div>
 
+@section Scripts
+{ 
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
